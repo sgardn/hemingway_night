@@ -38,3 +38,33 @@ refactor(db): optimize database queries
 - Determines semantic versioning
 - Communicates the nature of changes to other developers
 - Makes it easier to review and understand commit history 
+
+# Git Workflow Guidelines
+
+## Prefer `git fetch` over `git pull`
+
+Always use `git fetch` instead of `git pull`. This is because:
+
+1. `git pull` is essentially `git fetch` followed by `git merge`, which can lead to unexpected merge commits
+2. Using `git fetch` gives you more control over how you want to integrate changes
+3. It allows you to review changes before integrating them into your working branch
+
+### Recommended Workflow
+
+Instead of:
+```bash
+git pull origin main
+```
+
+Use:
+```bash
+git fetch origin
+git rebase origin/main
+```
+
+This approach:
+- Gives you a chance to review changes before integrating them
+- Creates a linear, cleaner git history
+- Avoids unnecessary merge commits
+- Makes it easier to track changes and understand the project history
+- Simplifies reverting changes if needed 
