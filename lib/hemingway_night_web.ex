@@ -43,7 +43,7 @@ defmodule HemingwayNightWeb do
         layouts: [html: HemingwayNightWeb.Layouts]
 
       import Plug.Conn
-      import HemingwayNightWeb.Gettext
+      use Gettext, backend: HemingwayNightWeb.Gettext
 
       unquote(verified_routes())
     end
@@ -85,7 +85,7 @@ defmodule HemingwayNightWeb do
       import Phoenix.HTML
       # Core UI components and translation
       import HemingwayNightWeb.CoreComponents
-      import HemingwayNightWeb.Gettext
+      use Gettext, backend: HemingwayNightWeb.Gettext
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS

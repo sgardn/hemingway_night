@@ -17,7 +17,7 @@ defmodule HemingwayNightWeb.CoreComponents do
   use Phoenix.Component
 
   alias Phoenix.LiveView.JS
-  import HemingwayNightWeb.Gettext
+  use Gettext, backend: HemingwayNightWeb.Gettext
 
   @doc """
   Renders a modal.
