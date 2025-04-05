@@ -1,5 +1,6 @@
 defmodule HemingwayNightWeb.Router do
   use HemingwayNightWeb, :router
+  import PhoenixStorybook.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -14,10 +15,15 @@ defmodule HemingwayNightWeb.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/" do
+    storybook_assets()
+  end
+
   scope "/", HemingwayNightWeb do
     pipe_through :browser
 
     get "/", PageController, :home
+    live_storybook "/storybook", backend_module: HemingwayNightWeb.Storybook
   end
 
   # Other scopes may use custom stacks.

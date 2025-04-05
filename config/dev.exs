@@ -25,8 +25,17 @@ config :hemingway_night, HemingwayNightWeb.Endpoint,
   debug_errors: true,
   secret_key_base: "GItG4u5BkQq/H8fEGKYhHcFWEO/EOPjdcgnAYgzldti8U2HgVrU5sffXLYNU/kDN",
   watchers: [
-    esbuild: {Esbuild, :install_and_run, [:hemingway_night, ~w(--sourcemap=inline --watch)]},
-    tailwind: {Tailwind, :install_and_run, [:hemingway_night, ~w(--watch)]}
+    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
+    tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]},
+    storybook_tailwind: {Tailwind, :install_and_run, [:storybook, ~w(--watch)]}
+  ],
+  live_reload: [
+    patterns: [
+      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"priv/gettext/.*(po)$",
+      ~r"lib/hemingway_night_web/(controllers|live|components)/.*(ex|heex)$",
+      ~r"storybook/.*(exs)$"
+    ]
   ]
 
 # ## SSL Support
@@ -51,16 +60,6 @@ config :hemingway_night, HemingwayNightWeb.Endpoint,
 # If desired, both `http:` and `https:` keys can be
 # configured to run both http and https servers on
 # different ports.
-
-# Watch static and templates for browser reloading.
-config :hemingway_night, HemingwayNightWeb.Endpoint,
-  live_reload: [
-    patterns: [
-      ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
-      ~r"priv/gettext/.*(po)$",
-      ~r"lib/hemingway_night_web/(controllers|live|components)/.*(ex|heex)$"
-    ]
-  ]
 
 # Enable dev routes for dashboard and mailbox
 config :hemingway_night, dev_routes: true

@@ -34,21 +34,29 @@ config :hemingway_night, HemingwayNight.Mailer, adapter: Swoosh.Adapters.Local
 # Configure esbuild (the version is required)
 config :esbuild,
   version: "0.17.11",
-  hemingway_night: [
+  default: [
     args:
-      ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
+      ~w(js/app.js js/storybook.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
     cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
 
-# Configure tailwind (the version is required)
+# Configure tailwind
 config :tailwind,
-  version: "3.4.0",
-  hemingway_night: [
+  version: "3.3.2",
+  default: [
     args: ~w(
       --config=tailwind.config.js
       --input=css/app.css
       --output=../priv/static/assets/app.css
+    ),
+    cd: Path.expand("../assets", __DIR__)
+  ],
+  storybook: [
+    args: ~w(
+      --config=tailwind.config.js
+      --input=css/storybook.css
+      --output=../priv/static/assets/storybook.css
     ),
     cd: Path.expand("../assets", __DIR__)
   ]

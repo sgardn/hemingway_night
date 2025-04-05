@@ -6,10 +6,12 @@ const fs = require("fs")
 const path = require("path")
 
 module.exports = {
+  important: ".hemingway-night-web",
   content: [
     "./js/**/*.js",
     "../lib/hemingway_night_web.ex",
-    "../lib/hemingway_night_web/**/*.*ex"
+    "../lib/hemingway_night_web/**/*.*ex",
+    "../storybook/**/*.*exs"
   ],
   theme: {
     extend: {

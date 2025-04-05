@@ -38,7 +38,7 @@ defmodule HemingwayNight.MixProject do
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 4.0"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_view, "~> 0.20.2"},
+      {:phoenix_live_view, "~> 1.0"},
       {:floki, ">= 0.30.0", only: :test},
       {:phoenix_live_dashboard, "~> 0.8.3"},
       {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
@@ -59,7 +59,8 @@ defmodule HemingwayNight.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.2"},
       {:redix, "~> 1.1"},
-      {:poolboy, "~> 1.5"}
+      {:poolboy, "~> 1.5"},
+      {:phoenix_storybook, "~> 0.8.1"}
     ]
   end
 
@@ -76,10 +77,11 @@ defmodule HemingwayNight.MixProject do
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
-      "assets.build": ["tailwind hemingway_night", "esbuild hemingway_night"],
+      "assets.build": ["tailwind default", "tailwind storybook", "esbuild default"],
       "assets.deploy": [
-        "tailwind hemingway_night --minify",
-        "esbuild hemingway_night --minify",
+        "tailwind default --minify",
+        "tailwind storybook --minify",
+        "esbuild default --minify",
         "phx.digest"
       ]
     ]
