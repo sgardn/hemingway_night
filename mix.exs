@@ -77,10 +77,11 @@ defmodule HemingwayNight.MixProject do
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
-      "assets.build": ["tailwind hemingway_night", "esbuild hemingway_night"],
+      "assets.build": ["tailwind default", "tailwind storybook", "esbuild default"],
       "assets.deploy": [
-        "tailwind hemingway_night --minify",
-        "esbuild hemingway_night --minify",
+        "tailwind default --minify",
+        "tailwind storybook --minify",
+        "esbuild default --minify",
         "phx.digest"
       ]
     ]
