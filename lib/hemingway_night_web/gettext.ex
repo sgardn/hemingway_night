@@ -5,7 +5,7 @@ defmodule HemingwayNightWeb.Gettext do
   By using [Gettext](https://hexdocs.pm/gettext),
   your module gains a set of macros for translations, for example:
 
-      import HemingwayNightWeb.Gettext
+      use Gettext, backend: HemingwayNightWeb.Gettext
 
       # Simple translation
       gettext("Here is the string to translate")
@@ -20,5 +20,5 @@ defmodule HemingwayNightWeb.Gettext do
 
   See the [Gettext Docs](https://hexdocs.pm/gettext) for detailed usage.
   """
-  use Gettext, otp_app: :hemingway_night
+  use Gettext.Backend, otp_app: :hemingway_night
 end
